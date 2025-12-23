@@ -1,0 +1,67 @@
+<Window x:Class="MotorcycleShop.UI.CartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MotorcycleShop.UI"
+        mc:Ignorable="d"
+        Title="Корзина" Height="600" Width="800">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Text="Корзина покупок" 
+                   FontSize="24" FontWeight="Bold" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,20"/>
+
+        <!-- Список товаров в корзине -->
+        <DataGrid x:Name="CartItemsDataGrid" 
+                  Grid.Row="1" 
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False"
+                  Margin="0,0,0,20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Марка" Binding="{Binding Motorcycle.Brand}" Width="*"/>
+                <DataGridTextColumn Header="Модель" Binding="{Binding Motorcycle.Model}" Width="*"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Motorcycle.Price, StringFormat={}{0:C}}" Width="*"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="*"/>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding TotalPrice, StringFormat={}{0:C}}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Общая сумма и кнопки -->
+        <StackPanel Grid.Row="2" Margin="0,10,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,20">
+                <TextBlock Text="Общая сумма: " FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                <TextBlock x:Name="TotalAmountTextBlock" Text="0 руб." FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="5,0,0,0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="PlaceOrderButton" 
+                        Content="Оформить заказ" 
+                        Width="150" 
+                        Height="40" 
+                        Margin="0,0,20,0"
+                        Click="PlaceOrderButton_Click"/>
+                        
+                <Button x:Name="RemoveItemButton" 
+                        Content="Удалить" 
+                        Width="100" 
+                        Height="40" 
+                        Margin="0,0,20,0"
+                        Click="RemoveItemButton_Click"/>
+                        
+                <Button x:Name="ContinueShoppingButton" 
+                        Content="Продолжить покупки" 
+                        Width="150" 
+                        Height="40"
+                        Click="ContinueShoppingButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

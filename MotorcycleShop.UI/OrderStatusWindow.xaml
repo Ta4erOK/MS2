@@ -1,0 +1,100 @@
+<Window x:Class="MotorcycleShop.UI.OrderStatusWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MotorcycleShop.UI"
+        mc:Ignorable="d"
+        Title="Статус заказа" Height="600" Width="700">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Text="Статус заказа" 
+                   FontSize="24" FontWeight="Bold" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,20"/>
+
+        <!-- Поиск заказа -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="Номер заказа: " VerticalAlignment="Center" FontWeight="Bold" Margin="0,0,10,0"/>
+                    <TextBox x:Name="OrderNumberTextBox" Width="200" Height="30"/>
+                </StackPanel>
+                
+                <Button x:Name="SearchButton" 
+                        Grid.Column="1"
+                        Content="Поиск" 
+                        Width="100" 
+                        Height="30"
+                        Margin="10,0,0,0"
+                        Click="SearchButton_Click"/>
+            </Grid>
+        </StackPanel>
+
+        <!-- Информация о заказе -->
+        <ScrollViewer Grid.Row="2">
+            <StackPanel>
+                <!-- Статус заказа -->
+                <GroupBox Header="Статус заказа" Margin="0,0,0,15">
+                    <StackPanel Margin="10">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="Текущий статус: " FontWeight="Bold" Width="120"/>
+                            <TextBlock x:Name="StatusTextBlock" Text="---" FontSize="14" FontWeight="Bold"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="Дата заказа: " FontWeight="Bold" Width="120"/>
+                            <TextBlock x:Name="OrderDateTextBlock" Text="---"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Сумма заказа: " FontWeight="Bold" Width="120"/>
+                            <TextBlock x:Name="OrderAmountTextBlock" Text="---"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Состав заказа -->
+                <GroupBox Header="Состав заказа" Margin="0,0,0,15">
+                    <DataGrid x:Name="OrderItemsDataGrid" 
+                              AutoGenerateColumns="False" 
+                              CanUserAddRows="False"
+                              Height="200"
+                              Margin="10">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Марка" Binding="{Binding Motorcycle.Brand}" Width="*"/>
+                            <DataGridTextColumn Header="Модель" Binding="{Binding Motorcycle.Model}" Width="*"/>
+                            <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="*"/>
+                            <DataGridTextColumn Header="Цена" Binding="{Binding UnitPrice, StringFormat={}{0:C}}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+
+                <!-- Кнопки -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <Button x:Name="NewOrderButton" 
+                            Content="Новый заказ" 
+                            Width="120" 
+                            Height="40" 
+                            Margin="0,0,20,0"
+                            Click="NewOrderButton_Click"/>
+                            
+                    <Button x:Name="CloseButton" 
+                            Content="Закрыть" 
+                            Width="100" 
+                            Height="40"
+                            Click="CloseButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

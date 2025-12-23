@@ -1,0 +1,96 @@
+<Window x:Class="MotorcycleShop.UI.PaymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MotorcycleShop.UI"
+        mc:Ignorable="d"
+        Title="Оплата заказа" Height="600" Width="500">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Text="Оплата заказа" 
+                   FontSize="24" FontWeight="Bold" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,20"/>
+
+        <!-- Форма оплаты -->
+        <ScrollViewer Grid.Row="1" Margin="0,0,0,20">
+            <StackPanel>
+                <!-- Информация о заказе -->
+                <GroupBox Header="Информация о заказе" Margin="0,0,0,15">
+                    <StackPanel Margin="10">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="Номер заказа: " FontWeight="Bold"/>
+                            <TextBlock x:Name="OrderNumberTextBlock" Text="---"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="Сумма заказа: " FontWeight="Bold"/>
+                            <TextBlock x:Name="OrderAmountTextBlock" Text="---"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Данные карты -->
+                <GroupBox Header="Данные банковской карты" Margin="0,0,0,15">
+                    <StackPanel Margin="10">
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Номер карты:*" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBox x:Name="CardNumberTextBox" Height="30" MaxLength="19" ToolTip="Введите номер карты в формате XXXX XXXX XXXX XXXX"/>
+                        </StackPanel>
+
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                <TextBlock Text="Срок действия:*" FontWeight="Bold" Margin="0,0,0,5"/>
+                                <TextBox x:Name="ExpiryDateTextBox" Height="30" MaxLength="5" ToolTip="MM/YY"/>
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="CVV:*" FontWeight="Bold" Margin="0,0,0,5"/>
+                                <TextBox x:Name="CvvTextBox" Height="30" MaxLength="3" ToolTip="3 цифры с обратной стороны карты"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Имя владельца:*" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBox x:Name="CardholderNameTextBox" Height="30"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Сумма к оплате -->
+                <GroupBox Header="Сумма к оплате" Margin="0,0,0,15">
+                    <StackPanel Margin="10" HorizontalAlignment="Right">
+                        <TextBlock x:Name="AmountToPayTextBlock" Text="0 руб." FontSize="18" FontWeight="Bold"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="PayButton" 
+                    Content="Оплатить" 
+                    Width="120" 
+                    Height="40" 
+                    Margin="0,0,20,0"
+                    Click="PayButton_Click"/>
+                    
+            <Button x:Name="CancelButton" 
+                    Content="Отмена" 
+                    Width="100" 
+                    Height="40"
+                    Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -4,9 +4,153 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MotorcycleShop.UI"
+        xmlns:converters="clr-namespace:MotorcycleShop.UI.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Мотоциклы - Главная" Height="700" Width="1000">
+    <Window.Resources>
+        <converters:BoolToInStockConverter x:Key="BoolToInStockConverter"/>
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Text="Магазин продажи мотоциклов"
+                   FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+        <!-- Панель поиска и фильтрации -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Поиск -->
+                <TextBox x:Name="SearchTextBox" Grid.Column="0"
+                         Margin="0,0,10,0"
+                         VerticalAlignment="Center"
+                         ToolTip="Поиск мотоциклов..."/>
+
+                <!-- Фильтр по марке -->
+                <ComboBox x:Name="BrandFilterComboBox"
+                          Grid.Column="1"
+                          Margin="0,0,10,0"
+                          VerticalAlignment="Center"
+                          ToolTip="Фильтр по марке"/>
+
+                <!-- Фильтр по году -->
+                <ComboBox x:Name="YearFilterComboBox"
+                          Grid.Column="2"
+                          Margin="0,0,10,0"
+                          VerticalAlignment="Center"
+                          ToolTip="Фильтр по году"/>
+
+                <!-- Кнопки управления -->
+                <Button x:Name="SearchButton"
+                        Grid.Column="3"
+                        Content="Поиск"
+                        Width="80"
+                        Height="30"
+                        Margin="0,0,5,0"
+                        Click="SearchButton_Click"/>
+
+                <Button x:Name="ResetFiltersButton"
+                        Grid.Column="4"
+                        Content="Сбросить"
+                        Width="80"
+                        Height="30"
+                        Margin="0,0,10,0"
+                        Click="ResetFiltersButton_Click"/>
+
+                <Button x:Name="CartButton"
+                        Grid.Column="5"
+                        Content="Корзина (0)"
+                        Width="100"
+                        Height="30"
+                        Click="CartButton_Click"/>
+            </Grid>
+
+            <!-- Дополнительные фильтры (цена) -->
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Мин. цена:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox x:Name="MinPriceTextBox" Grid.Column="1" Width="100" Margin="0,0,10,0"/>
+
+                <TextBlock Grid.Column="2" Text="Макс. цена:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox x:Name="MaxPriceTextBox" Grid.Column="3" Width="100" Margin="0,0,10,0"/>
+
+                <Button x:Name="ApplyPriceFilterButton" Grid.Column="4"
+                        Content="Применить фильтр цены"
+                        Height="30"
+                        Click="ApplyPriceFilterButton_Click"/>
+            </Grid>
+        </StackPanel>
+
+        <!-- Панель управления -->
+        <StackPanel Grid.Row="2" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <Button x:Name="AddMotorcycleButton"
+                        Content="Добавить мотоцикл"
+                        Width="150"
+                        Height="30"
+                        Margin="0,0,10,0"
+                        Click="AddMotorcycleButton_Click"/>
+
+                <Button x:Name="EditMotorcycleButton"
+                        Content="Редактировать"
+                        Width="120"
+                        Height="30"
+                        Margin="0,0,10,0"
+                        Click="EditMotorcycleButton_Click"/>
+
+                <Button x:Name="DeleteMotorcycleButton"
+                        Content="Удалить"
+                        Width="100"
+                        Height="30"
+                        Click="DeleteMotorcycleButton_Click"/>
+            </StackPanel>
+
+            <!-- Список мотоциклов -->
+            <DataGrid x:Name="MotorcyclesDataGrid"
+                      Grid.Row="2"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      SelectionChanged="MotorcyclesDataGrid_SelectionChanged"
+                      MouseDoubleClick="MotorcyclesDataGrid_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Марка" Binding="{Binding Brand}" Width="*"/>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding Model}" Width="*"/>
+                    <DataGridTextColumn Header="Год" Binding="{Binding Year}" Width="80"/>
+                    <DataGridTextColumn Header="Цвет" Binding="{Binding Color}" Width="*"/>
+                    <DataGridTextColumn Header="Объем двигателя" Binding="{Binding EngineVolume}" Width="*"/>
+                    <DataGridTextColumn Header="Пробег" Binding="{Binding Mileage}" Width="*"/>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:C}}" Width="*"/>
+                    <DataGridTextColumn Header="Наличие" Binding="{Binding InStock, Converter={StaticResource BoolToInStockConverter}}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <!-- Статус бар -->
+        <StatusBar Grid.Row="3" Margin="0,10,0,0">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusTextBlock" Text="Готово"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

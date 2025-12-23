@@ -1,0 +1,90 @@
+<Window x:Class="MotorcycleShop.UI.OrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MotorcycleShop.UI"
+        mc:Ignorable="d"
+        Title="Оформление заказа" Height="700" Width="600">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Text="Оформление заказа" 
+                   FontSize="24" FontWeight="Bold" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,20"/>
+
+        <!-- Форма оформления заказа -->
+        <ScrollViewer Grid.Row="1" Margin="0,0,0,20">
+            <StackPanel>
+                <!-- Контактные данные -->
+                <GroupBox Header="Контактные данные" Margin="0,0,0,15">
+                    <StackPanel Margin="10">
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="ФИО покупателя:*" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBox x:Name="CustomerNameTextBox" Height="30"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Email:*" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBox x:Name="CustomerEmailTextBox" Height="30"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Телефон:*" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBox x:Name="CustomerPhoneTextBox" Height="30"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Адрес доставки -->
+                <GroupBox Header="Адрес доставки" Margin="0,0,0,15">
+                    <StackPanel Margin="10">
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Адрес:*" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBox x:Name="DeliveryAddressTextBox" Height="60" TextWrapping="Wrap" AcceptsReturn="True"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Комментарий к заказу -->
+                <GroupBox Header="Комментарий к заказу" Margin="0,0,0,15">
+                    <StackPanel Margin="10">
+                        <TextBox x:Name="CommentTextBox" Height="60" TextWrapping="Wrap" AcceptsReturn="True"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Сумма заказа -->
+                <GroupBox Header="Сумма заказа" Margin="0,0,0,15">
+                    <StackPanel Margin="10" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Общая сумма: " FontWeight="Bold" FontSize="16"/>
+                            <TextBlock x:Name="TotalAmountTextBlock" Text="0 руб." FontWeight="Bold" FontSize="16" Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="PayButton" 
+                    Content="Оплатить" 
+                    Width="120" 
+                    Height="40" 
+                    Margin="0,0,20,0"
+                    Click="PayButton_Click"/>
+                    
+            <Button x:Name="BackButton" 
+                    Content="Назад" 
+                    Width="100" 
+                    Height="40"
+                    Click="BackButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

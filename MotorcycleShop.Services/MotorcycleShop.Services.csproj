@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MotorcycleShop.Domain\MotorcycleShop.Domain.csproj" />
+    <ProjectReference Include="..\MotorcycleShop.Data.Interfaces\MotorcycleShop.Data.Interfaces.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

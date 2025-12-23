@@ -1,0 +1,107 @@
+<Window x:Class="MotorcycleShop.UI.MotorcycleDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MotorcycleShop.UI"
+        mc:Ignorable="d"
+        Title="Детали мотоцикла" Height="600" Width="800">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" x:Name="TitleTextBlock" 
+                   Text="Детали мотоцикла" 
+                   FontSize="24" FontWeight="Bold" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,20"/>
+
+        <!-- Основная информация о мотоцикле -->
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Изображение и основные характеристики -->
+                <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                    <Image x:Name="MotorcycleImage" 
+                           Source="/Images/motorcycle-placeholder.png" 
+                           Stretch="Uniform" 
+                           MaxHeight="300" 
+                           MaxWidth="400" 
+                           Margin="0,0,0,20"
+                           HorizontalAlignment="Center"/>
+
+                    <StackPanel Margin="0,10,0,0">
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                            <TextBlock Text="Марка и модель: " FontWeight="Bold" Width="150"/>
+                            <TextBlock x:Name="BrandModelTextBlock" TextWrapping="Wrap"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                            <TextBlock Text="Год выпуска: " FontWeight="Bold" Width="150"/>
+                            <TextBlock x:Name="YearTextBlock"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                            <TextBlock Text="Объем двигателя: " FontWeight="Bold" Width="150"/>
+                            <TextBlock x:Name="EngineVolumeTextBlock"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                            <TextBlock Text="Пробег: " FontWeight="Bold" Width="150"/>
+                            <TextBlock x:Name="MileageTextBlock"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                            <TextBlock Text="Цвет: " FontWeight="Bold" Width="150"/>
+                            <TextBlock x:Name="ColorTextBlock"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                            <TextBlock Text="Цена: " FontWeight="Bold" Width="150"/>
+                            <TextBlock x:Name="PriceTextBlock" FontWeight="Bold" Foreground="Green"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Описание и кнопки -->
+                <StackPanel Grid.Column="1">
+                    <GroupBox Header="Описание" Margin="0,0,0,20">
+                        <ScrollViewer MaxHeight="200">
+                            <TextBlock x:Name="DescriptionTextBlock" 
+                                       TextWrapping="Wrap" 
+                                       VerticalAlignment="Top"/>
+                        </ScrollViewer>
+                    </GroupBox>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                        <Button x:Name="AddToCartButton" 
+                                Content="Добавить в корзину" 
+                                Height="40" 
+                                Margin="0,10,0,10"
+                                Click="AddToCartButton_Click"/>
+                        
+                        <Button x:Name="BackButton" 
+                                Content="Назад к каталогу" 
+                                Height="35" 
+                                Click="BackButton_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- Статус бар -->
+        <StatusBar Grid.Row="2" Margin="0,10,0,0">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusTextBlock" Text="Готово"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
