@@ -147,64 +147,72 @@ BEGIN
 END
 GO
 
+-- Удаление всех данных с учетом зависимостей
+DELETE FROM [Payments];
+DELETE FROM [OrderItems];
+DELETE FROM [ShoppingCartItems];
+DELETE FROM [Orders];
+DELETE FROM [ShoppingCarts];
+DELETE FROM [Motorcycles];
+
+-- Сброс идентификаторов
+DBCC CHECKIDENT('Motorcycles', RESEED, 0);
+DBCC CHECKIDENT('Orders', RESEED, 0);
+DBCC CHECKIDENT('OrderItems', RESEED, 0);
+DBCC CHECKIDENT('Payments', RESEED, 0);
+DBCC CHECKIDENT('ShoppingCarts', RESEED, 0);
+DBCC CHECKIDENT('ShoppingCartItems', RESEED, 0);
+
 -- Заполнение таблицы Motorcycles тестовыми данными
-IF NOT EXISTS (SELECT * FROM [Motorcycles])
-BEGIN
-    INSERT INTO [Motorcycles] ([Brand], [Model], [Year], [Color], [EngineVolume], [Mileage], [Price], [Description], [ImageUrl], [InStock], [CreatedAt])
-    VALUES 
-    ('Yamaha', 'YZF-R1', 2022, 'Red', 998.00, 1500, 1500000.00, 'Спортивный мотоцикл Yamaha YZF-R1 2022 года', '/Images/yamaha-r1.jpg', 1, GETDATE()),
-    ('Honda', 'CBR600RR', 2021, 'White', 599.00, 3200, 1200000.00, 'Средний спортивный мотоцикл Honda CBR600RR', '/Images/honda-cbr600.jpg', 1, GETDATE()),
-    ('Kawasaki', 'Ninja ZX-14R', 2020, 'Green', 1441.00, 4500, 1800000.00, 'Туринговый мотоцикл Kawasaki Ninja ZX-14R', '/Images/kawasaki-zx14r.jpg', 0, GETDATE()),
-    ('Suzuki', 'GSX-R750', 2023, 'Blue', 750.00, 800, 1350000.00, 'Спортивный мотоцикл Suzuki GSX-R750', '/Images/suzuki-gsxr750.jpg', 1, GETDATE()),
-    ('BMW', 'S1000RR', 2022, 'Light Blue', 999.00, 2100, 2000000.00, 'Спортивный мотоцикл BMW S1000RR', '/Images/bmw-s1000rr.jpg', 1, GETDATE());
-END
+INSERT INTO [Motorcycles] ([Brand], [Model], [Year], [Color], [EngineVolume], [Mileage], [Price], [Description], [ImageUrl], [InStock], [CreatedAt])
+VALUES
+('Yamaha', 'YZF-R1', 2022, 'Red', 998.00, 1500, 1500000.00, 'Спортивный мотоцикл Yamaha YZF-R1 2022 года', '/Images/yamaha-r1.jpg', 1, GETDATE()),
+('Honda', 'CBR600RR', 2021, 'White', 599.00, 3200, 1200000.00, 'Средний спортивный мотоцикл Honda CBR600RR', '/Images/honda-cbr600.jpg', 1, GETDATE()),
+('Kawasaki', 'Ninja ZX-14R', 2020, 'Green', 1441.00, 4500, 1800000.00, 'Туринговый мотоцикл Kawasaki Ninja ZX-14R', '/Images/kawasaki-zx14r.jpg', 0, GETDATE()),
+('Suzuki', 'GSX-R750', 2023, 'Blue', 750.00, 800, 1350000.00, 'Спортивный мотоцикл Suzuki GSX-R750', '/Images/suzuki-gsxr750.jpg', 1, GETDATE()),
+('BMW', 'S1000RR', 2022, 'Light Blue', 999.00, 2100, 2000000.00, 'Спортивный мотоцикл BMW S1000RR', '/Images/bmw-s1000rr.jpg', 1, GETDATE()),
+('Ducati', 'Panigale V4', 2023, 'Red', 1103.00, 500, 2200000.00, 'Супербайк Ducati Panigale V4', '/Images/ducati-panigale.jpg', 1, GETDATE()),
+('Harley-Davidson', 'Street 750', 2020, 'Black', 749.00, 12000, 950000.00, 'Классический кастом-байк Harley-Davidson Street 750', '/Images/harley-street750.jpg', 1, GETDATE()),
+('KTM', '1290 Super Duke R', 2022, 'Orange', 1301.00, 3000, 1750000.00, 'Мотоцикл KTM 1290 Super Duke R - "Безумный Duke"', '/Images/ktm-superduke.jpg', 1, GETDATE()),
+('Aprilia', 'RSV4', 2021, 'Red-White', 999.00, 2500, 1900000.00, 'Итальянский супербайк Aprilia RSV4', '/Images/aprilia-rsv4.jpg', 1, GETDATE()),
+('Triumph', 'Street Triple R', 2023, 'Firecracker Red', 765.00, 1000, 1400000.00, 'Английский спорт-нэке Triumph Street Triple R', '/Images/triumph-street.jpg', 1, GETDATE()),
+('Suzuki', 'V-Strom 650', 2021, 'Blue', 650.00, 8000, 1050000.00, 'Туристический мотоцикл Suzuki V-Strom 650', '/Images/suzuki-vstrom.jpg', 1, GETDATE()),
+('Yamaha', 'MT-07', 2022, 'Dark Knight', 689.00, 4500, 1100000.00, 'Нейкед-байк Yamaha MT-07', '/Images/yamaha-mt07.jpg', 1, GETDATE()),
+('Honda', 'Gold Wing', 2020, 'Pearl Nebula Green', 1833.00, 15000, 2500000.00, 'Туринговый мотоцикл Honda Gold Wing', '/Images/honda-goldwing.jpg', 0, GETDATE()),
+('Kawasaki', 'Z900', 2023, 'Candy Plasma Blue', 948.00, 2000, 1300000.00, 'Спорт-нэке Kawasaki Z900', '/Images/kawasaki-z900.jpg', 1, GETDATE()),
+('BMW', 'R1250GS', 2022, 'Triple Black', 1254.00, 6000, 2100000.00, 'Эндуро BMW R1250GS', '/Images/bmw-r1250gs.jpg', 1, GETDATE());
 GO
 
 -- Заполнение таблицы Orders тестовыми данными
-IF NOT EXISTS (SELECT * FROM [Orders])
-BEGIN
-    INSERT INTO [Orders] ([OrderNumber], [CustomerName], [CustomerEmail], [CustomerPhone], [DeliveryAddress], [OrderDate], [TotalAmount], [Status], [Comments])
-    VALUES 
-    ('ORD-20251223-1001', 'Иванов Иван Иванович', 'ivanov@example.com', '+79001234567', 'г. Москва, ул. Примерная, д. 1, кв. 1', GETDATE(), 1500000.00, 'Ожидает оплаты', 'Заказ срочный'),
-    ('ORD-20251223-1002', 'Петров Петр Петрович', 'petrov@example.com', '+79007654321', 'г. Санкт-Петербург, ул. Тестовая, д. 2, кв. 2', GETDATE(), 2000000.00, 'Оплачен', 'Забрать с собой');
-END
+INSERT INTO [Orders] ([OrderNumber], [CustomerName], [CustomerEmail], [CustomerPhone], [DeliveryAddress], [OrderDate], [TotalAmount], [Status], [Comments])
+VALUES
+('ORD-20251223-1001', 'Иванов Иван Иванович', 'ivanov@example.com', '+79001234567', 'г. Москва, ул. Примерная, д. 1, кв. 1', GETDATE(), 1500000.00, 'Ожидает оплаты', 'Заказ срочный'),
+('ORD-20251223-1002', 'Петров Петр Петрович', 'petrov@example.com', '+79007654321', 'г. Санкт-Петербург, ул. Тестовая, д. 2, кв. 2', GETDATE(), 2000000.00, 'Оплачен', 'Забрать с собой');
 GO
 
 -- Заполнение таблицы OrderItems тестовыми данными
-IF NOT EXISTS (SELECT * FROM [OrderItems])
-BEGIN
-    INSERT INTO [OrderItems] ([OrderId], [MotorcycleId], [Quantity], [UnitPrice])
-    VALUES 
-    (1, 1, 1, 1500000.00),
-    (2, 5, 1, 2000000.00);
-END
+INSERT INTO [OrderItems] ([OrderId], [MotorcycleId], [Quantity], [UnitPrice])
+VALUES
+(1, 1, 1, 1500000.00),
+(2, 5, 1, 2000000.00);
 GO
 
 -- Заполнение таблицы Payments тестовыми данными
-IF NOT EXISTS (SELECT * FROM [Payments])
-BEGIN
-    INSERT INTO [Payments] ([OrderId], [PaymentDate], [Amount], [PaymentMethod], [CardLastFour], [TransactionId], [Status])
-    VALUES 
-    (2, GETDATE(), 2000000.00, 'Карта', '4567', 'TXN-20251223-001', 'Успешно');
-END
+INSERT INTO [Payments] ([OrderId], [PaymentDate], [Amount], [PaymentMethod], [CardLastFour], [TransactionId], [Status])
+VALUES
+(2, GETDATE(), 2000000.00, 'Карта', '4567', 'TXN-20251223-001', 'Успешно');
 GO
 
 -- Заполнение таблицы ShoppingCarts тестовыми данными
-IF NOT EXISTS (SELECT * FROM [ShoppingCarts])
-BEGIN
-    INSERT INTO [ShoppingCarts] ([SessionId], [CreatedDate], [LastModified], [TotalAmount])
-    VALUES 
-    ('SESSION-001', GETDATE(), GETDATE(), 1500000.00);
-END
+INSERT INTO [ShoppingCarts] ([SessionId], [CreatedDate], [LastModified], [TotalAmount])
+VALUES
+('SESSION-001', GETDATE(), GETDATE(), 1500000.00);
 GO
 
 -- Заполнение таблицы ShoppingCartItems тестовыми данными
-IF NOT EXISTS (SELECT * FROM [ShoppingCartItems])
-BEGIN
-    INSERT INTO [ShoppingCartItems] ([ShoppingCartId], [MotorcycleId], [Quantity], [AddedDate])
-    VALUES 
-    (1, 1, 1, GETDATE());
-END
+INSERT INTO [ShoppingCartItems] ([ShoppingCartId], [MotorcycleId], [Quantity], [AddedDate])
+VALUES
+(1, 1, 1, GETDATE());
 GO
 
 PRINT 'База данных MotorcycleShopDB и все таблицы успешно созданы и заполнены тестовыми данными';
