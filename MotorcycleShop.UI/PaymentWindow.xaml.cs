@@ -19,15 +19,15 @@ namespace MotorcycleShop.UI
         public PaymentWindow(int orderId)
         {
             InitializeComponent();
-            
+
             _orderId = orderId;
-            
+
             // Инициализация репозиториев
             var options = DatabaseConfiguration.GetDbContextOptions();
             var context = new MotorcycleShop.Data.SqlServer.MotorcycleShopDbContext(options);
             _paymentRepository = new MotorcycleShop.Data.SqlServer.PaymentSqlServerRepository(context);
             _orderRepository = new MotorcycleShop.Data.SqlServer.OrderSqlServerRepository(context);
-            
+
             LoadOrderInfo();
         }
 
@@ -65,30 +65,9 @@ namespace MotorcycleShop.UI
         {
             // Убираем пробелы
             cardNumber = cardNumber.Replace(" ", "");
-            
+
             // Проверяем, что строка содержит только цифры и имеет длину 16
-            if (cardNumber.Length != 16 || !Regex.IsMatch(cardNumber, @"^\d{16}$"))
-            {
-                return false;
-            }
-            
-            // Проверка алгоритмом Луна (упрощенная версия)
-            int sum = 0;
-            bool alternate = false;
-            for (int i = cardNumber.Length - 1; i >= 0; i--)
-            {
-                int digit = int.Parse(cardNumber.Substring(i, 1));
-                if (alternate)
-                {
-                    digit *= 2;
-                    if (digit > 9)
-                        digit = (digit % 10) + 1;
-                }
-                sum += digit;
-                alternate = !alternate;
-            }
-            
-            return (sum % 10 == 0);
+            return cardNumber.Length == 16 && Regex.IsMatch(cardNumber, @"^\d{16}$");
         }
 
         /// <summary>
@@ -96,36 +75,8 @@ namespace MotorcycleShop.UI
         /// </summary>
         private bool ValidateExpiryDate(string expiryDate)
         {
-            // Проверяем формат MM/YY или MM/YY
-            if (!Regex.IsMatch(expiryDate, @"^(0[1-9]|1[0-2])\/?([0-9]{2})$"))
-            {
-                return false;
-            }
-
-            try
-            {
-                string[] parts = expiryDate.Replace("/", "").Split(new char[] { ' ', '/' }, StringSplitOptions.RemoveEmptyEntries);
-                if (parts.Length == 2)
-                {
-                    int month = int.Parse(parts[0]);
-                    int year = int.Parse(parts[1]);
-                    
-                    // Преобразуем 2-значный год в 4-значный
-                    year += 2000;
-                    
-                    var expiry = new DateTime(year, month, 1);
-                    var today = DateTime.Today;
-                    
-                    // Дата действия должна быть в будущем
-                    return expiry.AddMonths(1) > today;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-
-            return false;
+            // Проверяем формат MM/YY или MMYY
+            return Regex.IsMatch(expiryDate, @"^(0[1-9]|1[0-2])\/?(\d{2})$");
         }
 
         /// <summary>
@@ -133,7 +84,7 @@ namespace MotorcycleShop.UI
         /// </summary>
         private bool ValidateCvv(string cvv)
         {
-            return Regex.IsMatch(cvv, @"^\d{3}$");
+            return cvv.Length == 3 && Regex.IsMatch(cvv, @"^\d{3}$");
         }
 
         /// <summary>
