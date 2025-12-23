@@ -90,15 +90,10 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Text="Мин. цена:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                <TextBox x:Name="MinPriceTextBox" Grid.Column="1" Width="100" Margin="0,0,10,0"/>
+                <TextBox x:Name="MinPriceTextBox" Grid.Column="1" Width="100" Margin="0,0,10,0" TextChanged="PriceFilter_TextChanged"/>
 
                 <TextBlock Grid.Column="2" Text="Макс. цена:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                <TextBox x:Name="MaxPriceTextBox" Grid.Column="3" Width="100" Margin="0,0,10,0"/>
-
-                <Button x:Name="ApplyPriceFilterButton" Grid.Column="4"
-                        Content="Применить фильтр цены"
-                        Height="30"
-                        Click="ApplyPriceFilterButton_Click"/>
+                <TextBox x:Name="MaxPriceTextBox" Grid.Column="3" Width="100" Margin="0,0,10,0" TextChanged="PriceFilter_TextChanged"/>
             </Grid>
         </StackPanel>
 
@@ -111,13 +106,6 @@
                         Height="30"
                         Margin="0,0,10,0"
                         Click="AddMotorcycleButton_Click"/>
-
-                <Button x:Name="EditMotorcycleButton"
-                        Content="Редактировать"
-                        Width="120"
-                        Height="30"
-                        Margin="0,0,10,0"
-                        Click="EditMotorcycleButton_Click"/>
 
                 <Button x:Name="DeleteMotorcycleButton"
                         Content="Удалить"

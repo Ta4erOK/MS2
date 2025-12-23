@@ -115,9 +115,9 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// Применение фильтра по цене
+    /// Обработчик изменения текста в полях фильтра цены
     /// </summary>
-    private void ApplyPriceFilterButton_Click(object sender, RoutedEventArgs e)
+    private void PriceFilter_TextChanged(object sender, TextChangedEventArgs e)
     {
         ApplyFilters();
     }
