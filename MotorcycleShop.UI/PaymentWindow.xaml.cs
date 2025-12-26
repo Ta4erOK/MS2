@@ -43,8 +43,8 @@ namespace MotorcycleShop.UI
                 if (_order != null)
                 {
                     OrderNumberTextBlock.Text = _order.OrderNumber;
-                    OrderAmountTextBlock.Text = _order.TotalAmount.ToString("C");
-                    AmountToPayTextBlock.Text = _order.TotalAmount.ToString("C");
+                    OrderAmountTextBlock.Text = _order.TotalAmount.ToString("N2") + " руб.";
+                    AmountToPayTextBlock.Text = _order.TotalAmount.ToString("N2") + " руб.";
                 }
                 else
                 {

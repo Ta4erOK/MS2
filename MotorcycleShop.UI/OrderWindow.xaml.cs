@@ -27,7 +27,7 @@ namespace MotorcycleShop.UI
             
             // Установка тестовой суммы
             _totalAmount = 1500000; // 1.5 млн рублей для теста
-            TotalAmountTextBlock.Text = _totalAmount.ToString("C");
+            TotalAmountTextBlock.Text = _totalAmount.ToString("N2") + " руб.";
         }
 
         /// <summary>

@@ -46,7 +46,7 @@ namespace MotorcycleShop.UI
                     // Заполняем информацию о заказе
                     StatusTextBlock.Text = order.Status;
                     OrderDateTextBlock.Text = order.OrderDate.ToString("dd.MM.yyyy HH:mm");
-                    OrderAmountTextBlock.Text = order.TotalAmount.ToString("C");
+                    OrderAmountTextBlock.Text = order.TotalAmount.ToString("N2") + " руб.";
                     
                     // Загружаем позиции заказа (в демонстрационных целях создаем фиктивные данные)
                     // В реальном приложении эти данные будут загружаться из базы данных

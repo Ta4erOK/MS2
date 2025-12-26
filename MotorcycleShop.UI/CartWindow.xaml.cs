@@ -96,7 +96,7 @@ namespace MotorcycleShop.UI
                     total += item.Motorcycle.Price * item.Quantity;
                 }
             }
-            TotalAmountTextBlock.Text = total.ToString("C");
+            TotalAmountTextBlock.Text = total.ToString("N2") + " руб.";
         }
 
         /// <summary>

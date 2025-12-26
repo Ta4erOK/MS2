@@ -74,7 +74,7 @@
                             <DataGridTextColumn Header="Марка" Binding="{Binding Motorcycle.Brand}" Width="*"/>
                             <DataGridTextColumn Header="Модель" Binding="{Binding Motorcycle.Model}" Width="*"/>
                             <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="*"/>
-                            <DataGridTextColumn Header="Цена" Binding="{Binding UnitPrice, StringFormat={}{0:C}}" Width="*"/>
+                            <DataGridTextColumn Header="Цена" Binding="{Binding UnitPrice, StringFormat={}{0:N2} руб.}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </GroupBox>

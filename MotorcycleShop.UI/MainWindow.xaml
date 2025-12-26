@@ -114,7 +114,7 @@
                     <DataGridTextColumn Header="Цвет" Binding="{Binding Color}" Width="*"/>
                     <DataGridTextColumn Header="Объем двигателя" Binding="{Binding EngineVolume}" Width="*"/>
                     <DataGridTextColumn Header="Пробег" Binding="{Binding Mileage}" Width="*"/>
-                    <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:C}}" Width="*"/>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:N2} руб.}" Width="*"/>
 
                 </DataGrid.Columns>
             </DataGrid>

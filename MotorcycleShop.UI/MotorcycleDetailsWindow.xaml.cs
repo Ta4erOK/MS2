@@ -34,7 +34,7 @@ namespace MotorcycleShop.UI
                 EngineVolumeTextBlock.Text = $"{_motorcycle.EngineVolume} см³";
                 MileageTextBlock.Text = $"{_motorcycle.Mileage} км";
                 ColorTextBlock.Text = _motorcycle.Color;
-                PriceTextBlock.Text = _motorcycle.Price.ToString("C");
+                PriceTextBlock.Text = _motorcycle.Price.ToString("N2") + " руб.";
                 DescriptionTextBlock.Text = _motorcycle.Description ?? "Описание отсутствует";
 
                 // Загружаем изображение мотоцикла
