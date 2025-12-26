@@ -254,9 +254,13 @@ namespace MotorcycleShop.UI
                     _order.Status = "Оплачен";
                     _orderRepository.Update(_order);
 
+                    // Очищаем корзину пользователя (удаляем все элементы корзины для текущей сессии)
+                    ClearShoppingCart();
+
                     MessageBox.Show("Оплата прошла успешно! Ваш заказ обрабатывается.", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    this.Close();
+                    // Закрываем все окна, кроме главного
+                    CloseAllWindowsExceptMainWindow();
                 }
                 else
                 {
@@ -282,6 +286,87 @@ namespace MotorcycleShop.UI
         /// </summary>
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Очистка корзины пользователя
+        /// </summary>
+        private void ClearShoppingCart()
+        {
+            try
+            {
+                // Создаем новый контекст для работы с корзиной
+                var options = DatabaseConfiguration.GetDbContextOptions();
+                using var context = new MotorcycleShop.Data.SqlServer.MotorcycleShopDbContext(options);
+
+                // Получаем репозитории
+                var shoppingCartRepo = new MotorcycleShop.Data.SqlServer.ShoppingCartSqlServerRepository(context);
+                var shoppingCartItemRepo = new MotorcycleShop.Data.SqlServer.ShoppingCartItemSqlServerRepository(context);
+
+                // В реальном приложении sessionId должен быть связан с аутентифицированным пользователем
+                string sessionId = "DEFAULT_USER_SESSION"; // Для демонстрации используем фиксированную сессию
+
+                // Получаем корзину пользователя
+                var existingCart = shoppingCartRepo.GetAll()
+                    .FirstOrDefault(c => c.SessionId == sessionId);
+
+                if (existingCart != null)
+                {
+                    // Удаляем все элементы корзины
+                    var cartItems = shoppingCartItemRepo.GetAll()
+                        .Where(item => item.ShoppingCartId == existingCart.Id)
+                        .ToList();
+
+                    foreach (var item in cartItems)
+                    {
+                        shoppingCartItemRepo.Delete(item.Id);
+                    }
+
+                    // Обновляем общую сумму корзины до 0
+                    existingCart.TotalAmount = 0;
+                    existingCart.LastModified = DateTime.Now;
+                    shoppingCartRepo.Update(existingCart);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Логируем ошибку, но не показываем пользователю, чтобы не прерывать процесс оплаты
+                System.Diagnostics.Debug.WriteLine($"Ошибка при очистке корзины: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Закрытие всех окон, кроме главного
+        /// </summary>
+        private void CloseAllWindowsExceptMainWindow()
+        {
+            // Получаем список всех окон в приложении
+            var windowsToClose = new System.Collections.Generic.List<Window>();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                // Проверяем, что окно не является главным окном
+                if (!(window is MainWindow) && window != this)
+                {
+                    windowsToClose.Add(window);
+                }
+            }
+
+            // Закрываем все окна, кроме главного
+            foreach (Window window in windowsToClose)
+            {
+                try
+                {
+                    window.Close();
+                }
+                catch
+                {
+                    // Игнорируем ошибки при закрытии окон
+                }
+            }
+
+            // Закрываем текущее окно
             this.Close();
         }
     }
