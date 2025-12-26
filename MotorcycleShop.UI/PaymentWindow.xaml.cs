@@ -253,13 +253,9 @@ namespace MotorcycleShop.UI
                     // Обновляем статус заказа
                     _order.Status = "Оплачен";
                     _orderRepository.Update(_order);
-                    
+
                     MessageBox.Show("Оплата прошла успешно! Ваш заказ обрабатывается.", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
-                    
-                    // Открываем окно статуса заказа
-                    var orderStatusWindow = new OrderStatusWindow(_order.Id);
-                    orderStatusWindow.ShowDialog();
-                    
+
                     this.Close();
                 }
                 else
