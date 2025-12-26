@@ -73,17 +73,19 @@
 
         <!-- Кнопки -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="PayButton" 
-                    Content="Оплатить" 
-                    Width="120" 
-                    Height="40" 
-                    Margin="0,0,20,0"
-                    Click="PayButton_Click"/>
-                    
-            <Button x:Name="BackButton" 
-                    Content="Назад" 
-                    Width="100" 
+            <Button x:Name="PayButton"
+                    Content="Оплатить 💳"
+                    Width="120"
                     Height="40"
+                    Margin="0,0,20,0"
+                    Style="{StaticResource SuccessButtonStyle}"
+                    Click="PayButton_Click"/>
+
+            <Button x:Name="BackButton"
+                    Content="Назад 🏠"
+                    Width="100"
+                    Height="40"
+                    Style="{StaticResource SecondaryButtonStyle}"
                     Click="BackButton_Click"/>
         </StackPanel>
     </Grid>

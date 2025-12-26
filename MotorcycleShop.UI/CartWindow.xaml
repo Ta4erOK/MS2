@@ -43,24 +43,27 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="BackButton"
-                        Content="Назад к каталогу"
+                        Content="Назад 🏠"
                         Width="120"
                         Height="40"
                         Margin="0,0,20,0"
+                        Style="{StaticResource SecondaryButtonStyle}"
                         Click="BackButton_Click"/>
 
                 <Button x:Name="PlaceOrderButton"
-                        Content="Оформить заказ"
+                        Content="Оформить заказ 📦"
                         Width="150"
                         Height="40"
                         Margin="0,0,20,0"
+                        Style="{StaticResource SuccessButtonStyle}"
                         Click="PlaceOrderButton_Click"/>
 
                 <Button x:Name="RemoveItemButton"
-                        Content="Удалить"
+                        Content="Удалить ❌"
                         Width="100"
                         Height="40"
                         Margin="0,0,20,0"
+                        Style="{StaticResource DangerButtonStyle}"
                         Click="RemoveItemButton_Click"/>
             </StackPanel>
         </StackPanel>

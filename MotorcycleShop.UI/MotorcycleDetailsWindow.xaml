@@ -83,8 +83,9 @@
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                         <Button x:Name="BackButton"
-                                Content="Назад к каталогу"
+                                Content="Назад 🏠"
                                 Height="35"
+                                Style="{StaticResource SecondaryButtonStyle}"
                                 Click="BackButton_Click"/>
                     </StackPanel>
                 </StackPanel>
