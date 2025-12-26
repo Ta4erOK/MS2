@@ -31,7 +31,7 @@
                 <!-- Изображение и основные характеристики -->
                 <StackPanel Grid.Column="0" Margin="0,0,20,0">
                     <Image x:Name="MotorcycleImage" 
-                           Source="/Images/motorcycle-placeholder.png" 
+                           Source="pack://application:,,,/Images/motorcycle-placeholder.jpg" 
                            Stretch="Uniform" 
                            MaxHeight="300" 
                            MaxWidth="400" 

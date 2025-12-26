@@ -166,21 +166,21 @@ DBCC CHECKIDENT('ShoppingCartItems', RESEED, 0);
 -- Заполнение таблицы Motorcycles тестовыми данными
 INSERT INTO [Motorcycles] ([Brand], [Model], [Year], [Color], [EngineVolume], [Mileage], [Price], [Description], [ImageUrl], [InStock], [CreatedAt])
 VALUES
-('Yamaha', 'YZF-R1', 2022, 'Red', 998.00, 1500, 1500000.00, 'Спортивный мотоцикл Yamaha YZF-R1 2022 года', '/Images/yamaha-r1.jpg', 1, GETDATE()),
-('Honda', 'CBR600RR', 2021, 'White', 599.00, 3200, 1200000.00, 'Средний спортивный мотоцикл Honda CBR600RR', '/Images/honda-cbr600.jpg', 1, GETDATE()),
-('Kawasaki', 'Ninja ZX-14R', 2020, 'Green', 1441.00, 4500, 1800000.00, 'Туринговый мотоцикл Kawasaki Ninja ZX-14R', '/Images/kawasaki-zx14r.jpg', 0, GETDATE()),
-('Suzuki', 'GSX-R750', 2023, 'Blue', 750.00, 800, 1350000.00, 'Спортивный мотоцикл Suzuki GSX-R750', '/Images/suzuki-gsxr750.jpg', 1, GETDATE()),
-('BMW', 'S1000RR', 2022, 'Light Blue', 999.00, 2100, 2000000.00, 'Спортивный мотоцикл BMW S1000RR', '/Images/bmw-s1000rr.jpg', 1, GETDATE()),
-('Ducati', 'Panigale V4', 2023, 'Red', 1103.00, 500, 2200000.00, 'Супербайк Ducati Panigale V4', '/Images/ducati-panigale.jpg', 1, GETDATE()),
-('Harley-Davidson', 'Street 750', 2020, 'Black', 749.00, 12000, 950000.00, 'Классический кастом-байк Harley-Davidson Street 750', '/Images/harley-street750.jpg', 1, GETDATE()),
-('KTM', '1290 Super Duke R', 2022, 'Orange', 1301.00, 3000, 1750000.00, 'Мотоцикл KTM 1290 Super Duke R - "Безумный Duke"', '/Images/ktm-superduke.jpg', 1, GETDATE()),
-('Aprilia', 'RSV4', 2021, 'Red-White', 999.00, 2500, 1900000.00, 'Итальянский супербайк Aprilia RSV4', '/Images/aprilia-rsv4.jpg', 1, GETDATE()),
-('Triumph', 'Street Triple R', 2023, 'Firecracker Red', 765.00, 1000, 1400000.00, 'Английский спорт-нэке Triumph Street Triple R', '/Images/triumph-street.jpg', 1, GETDATE()),
-('Suzuki', 'V-Strom 650', 2021, 'Blue', 650.00, 8000, 1050000.00, 'Туристический мотоцикл Suzuki V-Strom 650', '/Images/suzuki-vstrom.jpg', 1, GETDATE()),
-('Yamaha', 'MT-07', 2022, 'Dark Knight', 689.00, 4500, 1100000.00, 'Нейкед-байк Yamaha MT-07', '/Images/yamaha-mt07.jpg', 1, GETDATE()),
-('Honda', 'Gold Wing', 2020, 'Pearl Nebula Green', 1833.00, 15000, 2500000.00, 'Туринговый мотоцикл Honda Gold Wing', '/Images/honda-goldwing.jpg', 0, GETDATE()),
-('Kawasaki', 'Z900', 2023, 'Candy Plasma Blue', 948.00, 2000, 1300000.00, 'Спорт-нэке Kawasaki Z900', '/Images/kawasaki-z900.jpg', 1, GETDATE()),
-('BMW', 'R1250GS', 2022, 'Triple Black', 1254.00, 6000, 2100000.00, 'Эндуро BMW R1250GS', '/Images/bmw-r1250gs.jpg', 1, GETDATE());
+('Yamaha', 'YZF-R1', 2022, 'Red', 998.00, 1500, 1500000.00, 'Спортивный мотоцикл Yamaha YZF-R1 2022 года', '/Images/yamaha mt-07.jpg', 1, GETDATE()),
+('Honda', 'CBR600RR', 2021, 'White', 599.00, 3200, 1200000.00, 'Средний спортивный мотоцикл Honda CBR600RR', '/Images/honda cb650r.jpg', 1, GETDATE()),
+('Kawasaki', 'Ninja ZX-14R', 2020, 'Green', 1441.00, 4500, 1800000.00, 'Туринговый мотоцикл Kawasaki Ninja ZX-14R', '/Images/kawasaki ninja 650.jpg', 0, GETDATE()),
+('Suzuki', 'GSX-R750', 2023, 'Blue', 750.00, 800, 1350000.00, 'Спортивный мотоцикл Suzuki GSX-R750', '/Images/suzuki gsxc-8r.jpg', 1, GETDATE()),
+('BMW', 'S1000RR', 2022, 'Light Blue', 999.00, 2100, 2000000.00, 'Спортивный мотоцикл BMW S1000RR', '/Images/bmw g 310r.jpg', 1, GETDATE()),
+('Ducati', 'Panigale V4', 2023, 'Red', 1103.00, 500, 2200000.00, 'Супербайк Ducati Panigale V4', '/Images/ducati scrambler.jpg', 1, GETDATE()),
+('Harley-Davidson', 'Street 750', 2020, 'Black', 749.00, 12000, 950000.00, 'Классический кастом-байк Harley-Davidson Street 750', '/Images/harley davidson street 750.jpg', 1, GETDATE()),
+('KTM', '1290 Super Duke R', 2022, 'Orange', 1301.00, 3000, 1750000.00, 'Мотоцикл KTM 1290 Super Duke R - "Безумный Duke"', '/Images/ktm 790 duke.jpg', 1, GETDATE()),
+('Aprilia', 'RSV4', 2021, 'Red-White', 999.00, 2500, 1900000.00, 'Итальянский супербайк Aprilia RSV4', '/Images/triumph street triple r.jpg', 1, GETDATE()),
+('Triumph', 'Street Triple R', 2023, 'Firecracker Red', 765.00, 1000, 1400000.00, 'Английский спорт-нэке Triumph Street Triple R', '/Images/triumph street triple r.jpg', 1, GETDATE()),
+('Suzuki', 'V-Strom 650', 2021, 'Blue', 650.00, 8000, 1050000.00, 'Туристический мотоцикл Suzuki V-Strom 650', '/Images/suzuki gsxc-8r.jpg', 1, GETDATE()),
+('Yamaha', 'MT-07', 2022, 'Dark Knight', 689.00, 4500, 1100000.00, 'Нейкед-байк Yamaha MT-07', '/Images/yamaha mt-07.jpg', 1, GETDATE()),
+('Honda', 'Gold Wing', 2020, 'Pearl Nebula Green', 1833.00, 15000, 2500000.00, 'Туринговый мотоцикл Honda Gold Wing', '/Images/honda cb650r.jpg', 0, GETDATE()),
+('Kawasaki', 'Z900', 2023, 'Candy Plasma Blue', 948.00, 2000, 1300000.00, 'Спорт-нэке Kawasaki Z900', '/Images/kawasaki ninja 650.jpg', 1, GETDATE()),
+('BMW', 'R1250GS', 2022, 'Triple Black', 1254.00, 6000, 2100000.00, 'Эндуро BMW R1250GS', '/Images/bmw g 310r.jpg', 1, GETDATE());
 GO
 
 -- Заполнение таблицы Orders тестовыми данными

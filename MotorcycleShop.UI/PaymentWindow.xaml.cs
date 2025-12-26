@@ -159,6 +159,14 @@ namespace MotorcycleShop.UI
         }
 
         /// <summary>
+        /// Обработка нажатия кнопки "Назад"
+        /// </summary>
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
         /// Обработка нажатия кнопки "Отмена"
         /// </summary>
         private void CancelButton_Click(object sender, RoutedEventArgs e)

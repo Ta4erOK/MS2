@@ -1,0 +1,62 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Цвета светлой темы (по умолчанию) -->
+    <SolidColorBrush x:Key="BackgroundColor" Color="White"/>
+    <SolidColorBrush x:Key="WindowBackgroundColor" Color="White"/>
+    <SolidColorBrush x:Key="ForegroundColor" Color="Black"/>
+    <SolidColorBrush x:Key="ControlBackgroundColor" Color="White"/>
+    <SolidColorBrush x:Key="ControlBorderColor" Color="#D4D4D4"/>
+    <SolidColorBrush x:Key="ButtonBackgroundColor" Color="#E1E1E1"/>
+    <SolidColorBrush x:Key="ButtonForegroundColor" Color="Black"/>
+    <SolidColorBrush x:Key="ButtonHoverBackgroundColor" Color="#D0D0D0"/>
+    <SolidColorBrush x:Key="DataGridBackgroundColor" Color="White"/>
+    <SolidColorBrush x:Key="DataGridRowBackgroundColor" Color="White"/>
+    <SolidColorBrush x:Key="DataGridRowAlternatingColor" Color="#F5F5F5"/>
+    <SolidColorBrush x:Key="DataGridHeaderBackgroundColor" Color="#E9E9E9"/>
+    <SolidColorBrush x:Key="DataGridHeaderForegroundColor" Color="Black"/>
+    <SolidColorBrush x:Key="StatusBarBackgroundColor" Color="#F0F0F0"/>
+    <SolidColorBrush x:Key="StatusBarForegroundColor" Color="Black"/>
+    <SolidColorBrush x:Key="TextBoxBackgroundColor" Color="White"/>
+    <SolidColorBrush x:Key="TextBoxForegroundColor" Color="Black"/>
+    <SolidColorBrush x:Key="ComboBoxBackgroundColor" Color="White"/>
+    <SolidColorBrush x:Key="ComboBoxForegroundColor" Color="Black"/>
+    <SolidColorBrush x:Key="GroupBoxBackgroundColor" Color="White"/>
+    <SolidColorBrush x:Key="GroupBoxForegroundColor" Color="Black"/>
+
+    <!-- Стили для элементов управления -->
+    <Style x:Key="LightButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource ButtonForegroundColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderColor}"/>
+    </Style>
+
+    <Style x:Key="LightDataGridStyle" TargetType="DataGrid">
+        <Setter Property="Background" Value="{StaticResource DataGridBackgroundColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundColor}"/>
+        <Setter Property="AlternatingRowBackground" Value="{StaticResource DataGridRowAlternatingColor}"/>
+    </Style>
+
+    <Style x:Key="LightTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Background" Value="{StaticResource TextBoxBackgroundColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextBoxForegroundColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderColor}"/>
+    </Style>
+
+    <Style x:Key="LightComboBoxStyle" TargetType="ComboBox">
+        <Setter Property="Background" Value="{StaticResource ComboBoxBackgroundColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource ComboBoxForegroundColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderColor}"/>
+    </Style>
+
+    <Style x:Key="LightGroupBoxStyle" TargetType="GroupBox">
+        <Setter Property="Background" Value="{StaticResource GroupBoxBackgroundColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource GroupBoxForegroundColor}"/>
+    </Style>
+
+    <Style x:Key="LightStatusBarStyle" TargetType="StatusBar">
+        <Setter Property="Background" Value="{StaticResource StatusBarBackgroundColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource StatusBarForegroundColor}"/>
+    </Style>
+
+</ResourceDictionary>

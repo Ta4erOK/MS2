@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MotorcycleShop.UI"
         xmlns:converters="clr-namespace:MotorcycleShop.UI.Converters"
+        xmlns:themes="clr-namespace:MotorcycleShop.UI.Themes"
         mc:Ignorable="d"
         Title="Мотоциклы - Главная" Height="700" Width="1000">
     <Window.Resources>
@@ -27,11 +28,11 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Поиск -->
@@ -60,16 +61,24 @@
                         Content="Поиск"
                         Width="80"
                         Height="30"
-                        Margin="0,0,5,0"
+                        Margin="0,0,90,0"
                         Click="SearchButton_Click"/>
 
                 <Button x:Name="ResetFiltersButton"
-                        Grid.Column="4"
+                        Grid.Column="3"
                         Content="Сбросить"
                         Width="80"
                         Height="30"
-                        Margin="0,0,10,0"
+                        Margin="90,0,0,0"
                         Click="ResetFiltersButton_Click"/>
+
+                <Button x:Name="ThemeToggleButton"
+                        Grid.Column="4"
+                        Content="Темная тема"
+                        Width="100"
+                        Height="30"
+                        Margin="0,0,10,0"
+                        Click="ThemeToggleButton_Click"/>
 
                 <Button x:Name="CartButton"
                         Grid.Column="5"
@@ -104,8 +113,11 @@
                       Grid.Row="2"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
-                      SelectionChanged="MotorcyclesDataGrid_SelectionChanged"
-                      MouseDoubleClick="MotorcyclesDataGrid_MouseDoubleClick">
+                      IsReadOnly="True"
+                      CanUserDeleteRows="False"
+                      CanUserReorderColumns="False"
+                      CanUserResizeRows="False"
+                      SelectionChanged="MotorcyclesDataGrid_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Марка" Binding="{Binding Brand}" Width="*"/>
                     <DataGridTextColumn Header="Модель" Binding="{Binding Model}" Width="*"/>
@@ -117,6 +129,22 @@
                     <DataGridTextColumn Header="Наличие" Binding="{Binding InStock, Converter={StaticResource BoolToInStockConverter}}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
+
+            <!-- Кнопки управления -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
+                <Button x:Name="DetailsButton"
+                        Content="Детали"
+                        Width="100"
+                        Height="30"
+                        Margin="0,0,10,0"
+                        Click="DetailsButton_Click"/>
+
+                <Button x:Name="AddToCartButton"
+                        Content="В корзину"
+                        Width="100"
+                        Height="30"
+                        Click="AddToCartButton_Click"/>
+            </StackPanel>
         </StackPanel>
 
         <!-- Статус бар -->

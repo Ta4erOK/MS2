@@ -42,23 +42,30 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="PlaceOrderButton" 
-                        Content="Оформить заказ" 
-                        Width="150" 
-                        Height="40" 
+                <Button x:Name="BackButton"
+                        Content="Назад к каталогу"
+                        Width="120"
+                        Height="40"
+                        Margin="0,0,20,0"
+                        Click="BackButton_Click"/>
+
+                <Button x:Name="PlaceOrderButton"
+                        Content="Оформить заказ"
+                        Width="150"
+                        Height="40"
                         Margin="0,0,20,0"
                         Click="PlaceOrderButton_Click"/>
-                        
-                <Button x:Name="RemoveItemButton" 
-                        Content="Удалить" 
-                        Width="100" 
-                        Height="40" 
+
+                <Button x:Name="RemoveItemButton"
+                        Content="Удалить"
+                        Width="100"
+                        Height="40"
                         Margin="0,0,20,0"
                         Click="RemoveItemButton_Click"/>
-                        
-                <Button x:Name="ContinueShoppingButton" 
-                        Content="Продолжить покупки" 
-                        Width="150" 
+
+                <Button x:Name="ContinueShoppingButton"
+                        Content="Продолжить покупки"
+                        Width="150"
                         Height="40"
                         Click="ContinueShoppingButton_Click"/>
             </StackPanel>

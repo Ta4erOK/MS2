@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:MotorcycleShop.UI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Начальная светлая тема -->
+                <ResourceDictionary Source="/Themes/LightTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

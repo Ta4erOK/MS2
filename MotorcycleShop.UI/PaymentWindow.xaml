@@ -79,16 +79,23 @@
 
         <!-- Кнопки -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="PayButton" 
-                    Content="Оплатить" 
-                    Width="120" 
-                    Height="40" 
+            <Button x:Name="BackButton"
+                    Content="Назад"
+                    Width="100"
+                    Height="40"
+                    Margin="0,0,20,0"
+                    Click="BackButton_Click"/>
+
+            <Button x:Name="PayButton"
+                    Content="Оплатить"
+                    Width="120"
+                    Height="40"
                     Margin="0,0,20,0"
                     Click="PayButton_Click"/>
-                    
-            <Button x:Name="CancelButton" 
-                    Content="Отмена" 
-                    Width="100" 
+
+            <Button x:Name="CancelButton"
+                    Content="Отмена"
+                    Width="100"
                     Height="40"
                     Click="CancelButton_Click"/>
         </StackPanel>

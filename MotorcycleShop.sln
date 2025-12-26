@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorcycleShop.Domain", "Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorcycleShop.Data.Interfaces", "MotorcycleShop.Data.Interfaces\MotorcycleShop.Data.Interfaces.csproj", "{69655744-E628-4133-98F9-E5F824675444}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorcycleShop.Data.InMemory", "MotorcycleShop.Data.InMemory\MotorcycleShop.Data.InMemory.csproj", "{5687D909-1328-4396-9612-25CD0D53269B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorcycleShop.Services", "MotorcycleShop.Services\MotorcycleShop.Services.csproj", "{C522E9D5-E35A-4A6C-A48E-552CDDEB4A04}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorcycleShop.Data.SqlServer", "MotorcycleShop.Data.SqlServer\MotorcycleShop.Data.SqlServer.csproj", "{8B211926-FEE5-4A06-A787-C758F3F9D91C}"
 EndProject
 Global

@@ -177,32 +177,38 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// Обработка двойного клика по строке мотоцикла
+    /// Обработка нажатия кнопки "Детали"
     /// </summary>
-    private void MotorcyclesDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    private void DetailsButton_Click(object sender, RoutedEventArgs e)
     {
         var selectedMotorcycle = MotorcyclesDataGrid.SelectedItem as Motorcycle;
         if (selectedMotorcycle != null)
         {
-            // Спрашиваем пользователя, хочет ли он посмотреть детали или добавить в корзину
-            var result = MessageBox.Show($"Посмотреть детали мотоцикла {selectedMotorcycle.Brand} {selectedMotorcycle.Model} или добавить в корзину?",
-                "Выбор действия",
-                MessageBoxButton.YesNoCancel,
-                MessageBoxImage.Question,
-                MessageBoxResult.Yes);
-
-            if (result == MessageBoxResult.Yes)
-            {
-                ShowMotorcycleDetails(selectedMotorcycle);
-            }
-            else if (result == MessageBoxResult.No)
-            {
-                AddToCart(selectedMotorcycle);
-            }
-            // Cancel - ничего не делаем
+            ShowMotorcycleDetails(selectedMotorcycle);
+        }
+        else
+        {
+            MessageBox.Show("Выберите мотоцикл для просмотра деталей", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
-/// <summary>
+
+    /// <summary>
+    /// Обработка нажатия кнопки "В корзину"
+    /// </summary>
+    private void AddToCartButton_Click(object sender, RoutedEventArgs e)
+    {
+        var selectedMotorcycle = MotorcyclesDataGrid.SelectedItem as Motorcycle;
+        if (selectedMotorcycle != null)
+        {
+            AddToCart(selectedMotorcycle);
+        }
+        else
+        {
+            MessageBox.Show("Выберите мотоцикл для добавления в корзину", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+    }
+
+    /// <summary>
     /// Обработка изменения выбора в DataGrid
     /// </summary>
     private void MotorcyclesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -310,6 +316,25 @@ public partial class MainWindow : Window
     {
         var cartWindow = new CartWindow();
         cartWindow.ShowDialog();
+    }
+
+    /// <summary>
+    /// Обработка нажатия кнопки переключения темы
+    /// </summary>
+    private void ThemeToggleButton_Click(object sender, RoutedEventArgs e)
+    {
+        // Переключение темы
+        Themes.ThemeManager.ToggleTheme();
+
+        // Обновление текста кнопки в зависимости от текущей темы
+        if (Themes.ThemeManager.IsDarkTheme)
+        {
+            ThemeToggleButton.Content = "Светлая тема";
+        }
+        else
+        {
+            ThemeToggleButton.Content = "Темная тема";
+        }
     }
 
 }

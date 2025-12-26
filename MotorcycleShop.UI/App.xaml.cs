@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Windows;
 using MotorcycleShop.Data.SqlServer;
+using MotorcycleShop.UI.Themes;
 
 namespace MotorcycleShop.UI;
 
@@ -19,6 +20,9 @@ public partial class App : Application
 
         // Создаем базу данных, если она не существует
         context.Database.EnsureCreated();
+
+        // Установка начальной темы (светлой)
+        ThemeManager.SetLightTheme();
 
         base.OnStartup(e);
     }

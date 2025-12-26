@@ -28,7 +28,7 @@ namespace MotorcycleShop.UI
             if (_motorcycle != null)
             {
                 Title = $"Детали мотоцикла - {_motorcycle.Brand} {_motorcycle.Model}";
-                
+
                 BrandModelTextBlock.Text = $"{_motorcycle.Brand} {_motorcycle.Model}";
                 YearTextBlock.Text = _motorcycle.Year.ToString();
                 EngineVolumeTextBlock.Text = $"{_motorcycle.EngineVolume} см³";
@@ -36,11 +36,80 @@ namespace MotorcycleShop.UI
                 ColorTextBlock.Text = _motorcycle.Color;
                 PriceTextBlock.Text = _motorcycle.Price.ToString("C");
                 DescriptionTextBlock.Text = _motorcycle.Description ?? "Описание отсутствует";
-                
-                // Здесь в дальнейшем можно загрузить изображение по URL
-                // MotorcycleImage.Source = new BitmapImage(new Uri(_motorcycle.ImageUrl));
-                
+
+                // Загружаем изображение мотоцикла
+                LoadMotorcycleImage();
+
                 UpdateStatus("Детали мотоцикла загружены");
+            }
+        }
+
+        /// <summary>
+        /// Загрузка изображения мотоцикла с обработкой ошибок
+        /// </summary>
+        private void LoadMotorcycleImage()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(_motorcycle.ImageUrl))
+                {
+                    // Если URL изображения начинается с /, значит это локальный путь
+                    if (_motorcycle.ImageUrl.StartsWith("/"))
+                    {
+                        // Заменяем на правильный путь к ресурсу
+                        string resourcePath = "pack://application:,,,/" + _motorcycle.ImageUrl.TrimStart('/');
+                        var bitmap = new System.Windows.Media.Imaging.BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.UriSource = new Uri(resourcePath);
+                        bitmap.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad; // Загружаем полностью сразу
+                        bitmap.EndInit();
+                        bitmap.Freeze(); // Закрываем для изменений для предотвращения проблем с потоками
+                        MotorcycleImage.Source = bitmap;
+                    }
+                    else
+                    {
+                        // Если это полный URL, используем его напрямую
+                        var bitmap = new System.Windows.Media.Imaging.BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.UriSource = new Uri(_motorcycle.ImageUrl);
+                        bitmap.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad;
+                        bitmap.EndInit();
+                        bitmap.Freeze();
+                        MotorcycleImage.Source = bitmap;
+                    }
+                }
+                else
+                {
+                    // Если URL изображения пустой, используем плейсхолдер
+                    LoadPlaceholderImage();
+                }
+            }
+            catch
+            {
+                // Если не удалось загрузить изображение, используем плейсхолдер
+                LoadPlaceholderImage();
+            }
+        }
+
+        /// <summary>
+        /// Загрузка плейсхолдера изображения
+        /// </summary>
+        private void LoadPlaceholderImage()
+        {
+            try
+            {
+                var bitmap = new System.Windows.Media.Imaging.BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri("pack://application:,,,/Images/motorcycle-placeholder.jpg");
+                bitmap.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+                bitmap.Freeze();
+                MotorcycleImage.Source = bitmap;
+            }
+            catch
+            {
+                // Если и плейсхолдер не загрузился, оставляем пустое изображение
+                MotorcycleImage.Source = null;
             }
         }
 
