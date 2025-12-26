@@ -318,23 +318,5 @@ public partial class MainWindow : Window
         cartWindow.ShowDialog();
     }
 
-    /// <summary>
-    /// Обработка нажатия кнопки переключения темы
-    /// </summary>
-    private void ThemeToggleButton_Click(object sender, RoutedEventArgs e)
-    {
-        // Переключение темы
-        Themes.ThemeManager.ToggleTheme();
-
-        // Обновление текста кнопки в зависимости от текущей темы
-        if (Themes.ThemeManager.IsDarkTheme)
-        {
-            ThemeToggleButton.Content = "Светлая тема";
-        }
-        else
-        {
-            ThemeToggleButton.Content = "Темная тема";
-        }
-    }
 
 }

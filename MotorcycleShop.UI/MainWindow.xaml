@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MotorcycleShop.UI"
         xmlns:converters="clr-namespace:MotorcycleShop.UI.Converters"
-        xmlns:themes="clr-namespace:MotorcycleShop.UI.Themes"
         mc:Ignorable="d"
         Title="Мотоциклы - Главная" Height="700" Width="1000">
     <Window.Resources>
@@ -72,17 +71,9 @@
                         Margin="90,0,0,0"
                         Click="ResetFiltersButton_Click"/>
 
-                <Button x:Name="ThemeToggleButton"
-                        Grid.Column="4"
-                        Content="Темная тема"
-                        Width="100"
-                        Height="30"
-                        Margin="0,0,10,0"
-                        Click="ThemeToggleButton_Click"/>
-
                 <Button x:Name="CartButton"
-                        Grid.Column="5"
-                        Content="Корзина (0)"
+                        Grid.Column="4"
+                        Content="Корзина"
                         Width="100"
                         Height="30"
                         Click="CartButton_Click"/>
@@ -99,10 +90,10 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Text="Мин. цена:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                <TextBox x:Name="MinPriceTextBox" Grid.Column="1" Width="100" Margin="0,0,10,0" TextChanged="PriceFilter_TextChanged"/>
+                <TextBox x:Name="MinPriceTextBox" Grid.Column="0" Width="100" Margin="0,0,00,0" TextChanged="PriceFilter_TextChanged"/>
 
                 <TextBlock Grid.Column="2" Text="Макс. цена:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                <TextBox x:Name="MaxPriceTextBox" Grid.Column="3" Width="100" Margin="0,0,10,0" TextChanged="PriceFilter_TextChanged"/>
+                <TextBox x:Name="MaxPriceTextBox" Grid.Column="2" Width="100" Margin="0,0,10,0" TextChanged="PriceFilter_TextChanged"/>
             </Grid>
         </StackPanel>
 

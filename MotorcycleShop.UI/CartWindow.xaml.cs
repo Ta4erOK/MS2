@@ -147,13 +147,6 @@ namespace MotorcycleShop.UI
             }
         }
 
-        /// <summary>
-        /// Обработка нажатия кнопки "Продолжить покупки"
-        /// </summary>
-        private void ContinueShoppingButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
 
         /// <summary>
         /// Обработка нажатия кнопки "Назад"

@@ -62,12 +62,6 @@
                         Height="40"
                         Margin="0,0,20,0"
                         Click="RemoveItemButton_Click"/>
-
-                <Button x:Name="ContinueShoppingButton"
-                        Content="Продолжить покупки"
-                        Width="150"
-                        Height="40"
-                        Click="ContinueShoppingButton_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

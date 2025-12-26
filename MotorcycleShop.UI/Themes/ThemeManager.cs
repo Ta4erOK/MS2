@@ -64,8 +64,8 @@ namespace MotorcycleShop.UI.Themes
                 for (int i = mergedDictionaries.Count - 1; i >= 0; i--)
                 {
                     var dict = mergedDictionaries[i];
-                    if (dict.Source != null && 
-                        (dict.Source.OriginalString.Contains("/Themes/") || 
+                    if (dict.Source != null &&
+                        (dict.Source.OriginalString.Contains("/Themes/") ||
                          dict.Source.OriginalString.Contains("\\Themes\\")))
                     {
                         mergedDictionaries.RemoveAt(i);

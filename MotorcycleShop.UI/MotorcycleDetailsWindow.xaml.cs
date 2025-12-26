@@ -100,7 +100,8 @@ namespace MotorcycleShop.UI
             {
                 var bitmap = new System.Windows.Media.Imaging.BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri("pack://application:,,,/Images/motorcycle-placeholder.jpg");
+                // Используем одно из существующих изображений как плейсхолдер
+                bitmap.UriSource = new Uri("pack://application:,,,/Images/yamaha-r1.png");
                 bitmap.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad;
                 bitmap.EndInit();
                 bitmap.Freeze();
@@ -121,15 +122,6 @@ namespace MotorcycleShop.UI
             StatusTextBlock.Text = message;
         }
 
-        /// <summary>
-        /// Обработка нажатия кнопки "Добавить в корзину"
-        /// </summary>
-        private void AddToCartButton_Click(object sender, RoutedEventArgs e)
-        {
-            // В реальном приложении здесь будет добавление в корзину
-            MessageBox.Show($"Мотоцикл {_motorcycle.Brand} {_motorcycle.Model} добавлен в корзину!", 
-                "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
 
         /// <summary>
         /// Обработка нажатия кнопки "Назад"

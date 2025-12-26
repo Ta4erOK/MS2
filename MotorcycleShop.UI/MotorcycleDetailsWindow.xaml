@@ -82,15 +82,9 @@
                     </GroupBox>
 
                     <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-                        <Button x:Name="AddToCartButton" 
-                                Content="Добавить в корзину" 
-                                Height="40" 
-                                Margin="0,10,0,10"
-                                Click="AddToCartButton_Click"/>
-                        
-                        <Button x:Name="BackButton" 
-                                Content="Назад к каталогу" 
-                                Height="35" 
+                        <Button x:Name="BackButton"
+                                Content="Назад к каталогу"
+                                Height="35"
                                 Click="BackButton_Click"/>
                     </StackPanel>
                 </StackPanel>
