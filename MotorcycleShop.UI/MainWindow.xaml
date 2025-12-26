@@ -7,9 +7,7 @@
         xmlns:converters="clr-namespace:MotorcycleShop.UI.Converters"
         mc:Ignorable="d"
         Title="Мотоциклы - Главная" Height="700" Width="1000">
-    <Window.Resources>
-        <converters:BoolToInStockConverter x:Key="BoolToInStockConverter"/>
-    </Window.Resources>
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -117,7 +115,7 @@
                     <DataGridTextColumn Header="Объем двигателя" Binding="{Binding EngineVolume}" Width="*"/>
                     <DataGridTextColumn Header="Пробег" Binding="{Binding Mileage}" Width="*"/>
                     <DataGridTextColumn Header="Цена" Binding="{Binding Price, StringFormat={}{0:C}}" Width="*"/>
-                    <DataGridTextColumn Header="Наличие" Binding="{Binding InStock, Converter={StaticResource BoolToInStockConverter}}" Width="*"/>
+
                 </DataGrid.Columns>
             </DataGrid>
 

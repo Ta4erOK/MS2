@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using MotorcycleShop.Domain;
@@ -76,7 +77,121 @@ namespace MotorcycleShop.UI
         private bool ValidateExpiryDate(string expiryDate)
         {
             // Проверяем формат MM/YY или MMYY
-            return Regex.IsMatch(expiryDate, @"^(0[1-9]|1[0-2])\/?(\d{2})$");
+            if (!Regex.IsMatch(expiryDate, @"^(0[1-9]|1[0-2])\/?(\d{2})$"))
+            {
+                return false;
+            }
+
+            // Убираем слэш для парсинга
+            string cleanDate = expiryDate.Replace("/", "");
+            if (cleanDate.Length != 4)
+            {
+                return false;
+            }
+
+            // Парсим месяц и год
+            int month = int.Parse(cleanDate.Substring(0, 2));
+            int year = int.Parse(cleanDate.Substring(2, 2));
+            int fullYear = 2000 + year; // Преобразуем 2-digit год в 4-digit
+
+            // Создаем дату - первый день следующего месяца
+            DateTime expiry = new DateTime(fullYear, month, 1).AddMonths(1);
+
+            // Проверяем, что срок действия больше текущей даты
+            return expiry > DateTime.Now;
+        }
+
+        /// <summary>
+        /// Обработчик изменения текста в поле номера карты
+        /// </summary>
+        private void CardNumberTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            var textBox = sender as System.Windows.Controls.TextBox;
+            if (textBox == null) return;
+
+            // Сохраняем текущую позицию курсора
+            int caretIndex = textBox.CaretIndex;
+
+            // Получаем текущий текст и удаляем все пробелы
+            string text = textBox.Text.Replace(" ", "");
+
+            // Ограничиваем длину до 16 символов
+            if (text.Length > 16)
+            {
+                text = text.Substring(0, 16);
+            }
+
+            // Форматируем с пробелами каждые 4 цифры
+            string formattedText = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (i > 0 && i % 4 == 0)
+                {
+                    formattedText += " ";
+                }
+                formattedText += text[i];
+            }
+
+            // Обновляем текст, если он изменился
+            if (textBox.Text != formattedText)
+            {
+                textBox.Text = formattedText;
+
+                // Корректируем позицию курсора
+                int newCaretIndex = caretIndex;
+                if (formattedText.Length > text.Length)
+                {
+                    // Если добавился пробел, корректируем позицию
+                    int spacesAdded = formattedText.Count(c => c == ' ');
+                    newCaretIndex = Math.Min(formattedText.Length, caretIndex + spacesAdded);
+                }
+
+                textBox.CaretIndex = newCaretIndex;
+            }
+        }
+
+        /// <summary>
+        /// Обработчик изменения текста в поле срока действия
+        /// </summary>
+        private void ExpiryDateTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            var textBox = sender as System.Windows.Controls.TextBox;
+            if (textBox == null) return;
+
+            // Сохраняем текущую позицию курсора
+            int caretIndex = textBox.CaretIndex;
+
+            // Получаем текущий текст и удаляем все слэши
+            string text = textBox.Text.Replace("/", "");
+
+            // Ограничиваем длину до 4 символов
+            if (text.Length > 4)
+            {
+                text = text.Substring(0, 4);
+            }
+
+            // Форматируем с добавлением слэша после 2-х символов
+            string formattedText = text;
+            if (text.Length > 2)
+            {
+                formattedText = text.Substring(0, 2) + "/" + text.Substring(2);
+            }
+
+            // Обновляем текст, если он изменился
+            if (textBox.Text != formattedText)
+            {
+                textBox.Text = formattedText;
+
+                // Корректируем позицию курсора
+                int newCaretIndex = caretIndex;
+                if (formattedText.Length > text.Length && caretIndex >= 2)
+                {
+                    // Если добавился слэш, корректируем позицию
+                    newCaretIndex = Math.Min(formattedText.Length, caretIndex + 1);
+                }
+
+                textBox.CaretIndex = newCaretIndex;
+            }
         }
 
         /// <summary>
