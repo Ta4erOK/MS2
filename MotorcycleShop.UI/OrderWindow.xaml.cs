@@ -18,16 +18,62 @@ namespace MotorcycleShop.UI
         public OrderWindow()
         {
             InitializeComponent();
-            
+
             // Инициализация репозиториев
             var options = DatabaseConfiguration.GetDbContextOptions();
             var context = new MotorcycleShop.Data.SqlServer.MotorcycleShopDbContext(options);
             _orderRepository = new MotorcycleShop.Data.SqlServer.OrderSqlServerRepository(context);
             _motorcycleRepository = new MotorcycleShop.Data.SqlServer.MotorcycleSqlServerRepository(context);
-            
-            // Установка тестовой суммы
-            _totalAmount = 1500000; // 1.5 млн рублей для теста
+
+            // Рассчитываем реальную сумму заказа на основе товаров в корзине
+            _totalAmount = CalculateCartTotal(context);
             TotalAmountTextBlock.Text = _totalAmount.ToString("N2") + " руб.";
+        }
+
+        /// <summary>
+        /// Рассчитывает общую сумму заказа на основе товаров в корзине
+        /// </summary>
+        private decimal CalculateCartTotal(MotorcycleShop.Data.SqlServer.MotorcycleShopDbContext context)
+        {
+            try
+            {
+                // Создаем репозитории для работы с корзиной
+                var shoppingCartRepo = new MotorcycleShop.Data.SqlServer.ShoppingCartSqlServerRepository(context);
+                var shoppingCartItemRepo = new MotorcycleShop.Data.SqlServer.ShoppingCartItemSqlServerRepository(context);
+                var motorcycleRepo = new MotorcycleShop.Data.SqlServer.MotorcycleSqlServerRepository(context);
+
+                // В реальном приложении sessionId должен быть связан с аутентифицированным пользователем
+                string sessionId = "DEFAULT_USER_SESSION"; // Для демонстрации используем фиксированную сессию
+
+                // Получаем корзину пользователя
+                var cart = shoppingCartRepo.GetAll()
+                    .FirstOrDefault(c => c.SessionId == sessionId);
+
+                if (cart != null)
+                {
+                    // Получаем элементы корзины
+                    var cartItems = shoppingCartItemRepo.GetAll()
+                        .Where(item => item.ShoppingCartId == cart.Id)
+                        .ToList();
+
+                    decimal total = 0;
+                    foreach (var item in cartItems)
+                    {
+                        var motorcycle = motorcycleRepo.GetById(item.MotorcycleId);
+                        if (motorcycle != null)
+                        {
+                            total += motorcycle.Price * item.Quantity;
+                        }
+                    }
+                    return total;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при расчете суммы заказа: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return 0; // Если произошла ошибка или корзина пуста, возвращаем 0
         }
 
         /// <summary>
